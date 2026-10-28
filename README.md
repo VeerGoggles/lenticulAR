@@ -242,6 +242,5 @@ docs/RESULTS.md           measurements and frames
 lenticulAR is a sibling of [pARelax](https://github.com/VeerGoggles/pARelax)
 and keeps its stack (React 18, Three.js r161, MindAR, react-app-rewired with an
 HTTPS dev server). What changed and why is in
-[METHOD.md § Differences from pARelax](docs/METHOD.md#7-differences-from-parelax) — including a fix
-worth porting back: pARelax reads MindAR's row-major face matrix with
-`Matrix4.fromArray`, so its camera never follows the head.
+[METHOD.md § Differences from pARelax](docs/METHOD.md#7-differences-from-parelax),
+including the face-matrix fix that has since been ported back to pARelax.

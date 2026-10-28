@@ -264,15 +264,16 @@ it can be overridden through `display`.
 | scenes on screen | one at a time, cross-faded on a timer | one per view zone, chosen by head position |
 | transition | timed visibility swap | rotating-prism mask driven by head position |
 | render cost | every loaded photo stays in the scene | 1 scene at rest, 2 in a band |
-| face matrix | `Matrix4.fromArray(faceMatrix)` — reads the row-major array as column-major, so the translation is always (0, 0, 0) | `eye = (m[3], m[7], −m[11])` |
+| face matrix | read row-major with `Matrix4.set(...m)` (until [7579a85](https://github.com/VeerGoggles/pARelax/commit/7579a85), `fromArray` lost the translation) | `eye = (m[3], m[7], −m[11])` |
 | camera | translated, centred frustum | off-axis (head-coupled) frustum, screen pinned |
 | displacement | along +z (`MeshPhongMaterial.displacementMap`) | along the ray to the nominal eye (custom shader) |
 | material | Phong + hemisphere light | unlit, so photos keep their exact colours |
 | tracker | `MindARThree` (its own renderer and canvas) | MindAR's face `Controller` only; MindAR is code-split and loaded on demand |
 | fallback | none | mouse / touch, plus a scripted tracker for capture |
 
-The face-matrix point is worth carrying back to pARelax: with `fromArray`, the
-tracked head never moves the camera — it settles at `CAMERA_OFFSET`
-(0, 0.4, 0), about 2 units from a 40-unit plane, which is the "tightly-zoomed
-crop" its demo-image comments work around. Reading the matrix with
-`new THREE.Matrix4().set(...m)` (or `fromArray(m).transpose()`) fixes it.
+The face-matrix point came back to pARelax as a fix
+([7579a85](https://github.com/VeerGoggles/pARelax/commit/7579a85)): with
+`fromArray` the tracked head never moved the camera — it settled at
+`CAMERA_OFFSET` (0, 0.4, 0), about 2 units from a 40-unit plane, which is the
+"tightly-zoomed crop" its demo-image comments describe. Reading the matrix with
+`new THREE.Matrix4().set(...m)` makes the camera follow the head.
