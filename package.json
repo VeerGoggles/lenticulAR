@@ -1,0 +1,39 @@
+{
+    "browserslist": {
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ],
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ]
+    },
+    "dependencies": {
+        "@types/react-dom": "^18.0.6",
+        "mind-ar": "^1.2.3",
+        "react": "^18.2.0",
+        "react-app-rewired": "^2.2.1",
+        "react-dom": "^18.2.0",
+        "react-scripts": "5.0.1",
+        "three": "^0.161.0",
+        "typescript": "^4.5.5"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app"
+        ]
+    },
+    "homepage": ".",
+    "name": "lenticular",
+    "private": true,
+    "scripts": {
+        "build": "react-app-rewired build",
+        "eject": "react-scripts eject",
+        "start": "react-app-rewired start",
+        "test": "react-app-rewired test"
+    },
+    "version": "0.1.0"
+}
