@@ -1,0 +1,351 @@
+:root {
+  --bg: #0e1116;
+  --ink: #ece7dd;
+  --ink-dim: rgba(236, 231, 221, 0.68);
+  --line: rgba(236, 231, 221, 0.16);
+  --accent: #d69b52;
+  --glass: rgba(12, 14, 20, 0.72);
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+#container {
+  position: fixed;
+  inset: 0;
+}
+
+/* ---------------------------------------------------------------- landing */
+
+#landing {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  padding: 0 24px;
+  background: radial-gradient(ellipse at center, rgba(14, 17, 22, 0.55), rgba(14, 17, 22, 0.88));
+}
+
+#landing h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  letter-spacing: -0.02em;
+}
+
+#landing h1 span {
+  color: var(--accent);
+}
+
+#landing .lede {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+#landing p {
+  max-width: 52ch;
+  margin: 0;
+  line-height: 1.5;
+  color: var(--ink-dim);
+}
+
+#landing .actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+#landing button,
+.panel-toggle {
+  font: inherit;
+  font-size: 1rem;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(236, 231, 221, 0.4);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+#landing button.primary {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+#landing button:hover,
+.panel-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+#landing .fine {
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+/* -------------------------------------------------------------------- hud */
+
+.hud {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: min(880px, calc(100vw - 32px));
+  z-index: 5;
+  pointer-events: none;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-bar {
+  position: relative;
+  height: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--glass);
+  border: 1px solid var(--line);
+}
+
+.hud-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  border-top: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.hud-zone span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--accent) 70%, white);
+  opacity: 0.6;
+}
+
+.hud-zone.on {
+  background: color-mix(in srgb, var(--accent) 38%, transparent);
+  border-top-color: var(--accent);
+}
+
+.hud-zone.on span {
+  opacity: 1;
+}
+
+.hud-band {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.1) 0 3px,
+      transparent 3px 7px
+    ),
+    linear-gradient(90deg, color-mix(in srgb, var(--a) 45%, transparent), color-mix(in srgb, var(--b) 45%, transparent));
+  border-left: 1px dashed rgba(255, 255, 255, 0.35);
+  border-right: 1px dashed rgba(255, 255, 255, 0.35);
+}
+
+.hud-marker {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 3px;
+  margin-left: -1.5px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.hud-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  justify-content: center;
+  margin-top: 8px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  color: var(--ink-dim);
+}
+
+.hud-stats b {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.hud-passes[data-n="2"] {
+  color: #ffd27a;
+}
+
+.hud-passes[data-n="3"] {
+  color: #ff8f8f;
+}
+
+/* ------------------------------------------------------------------ panel */
+
+.panel-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 6;
+  font-size: 0.85rem;
+  padding: 7px 16px;
+  background: var(--glass);
+}
+
+.panel {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 6;
+  width: 270px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  padding: 12px 14px 10px;
+  border-radius: 12px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.panel header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.panel-close {
+  font: inherit;
+  font-size: 18px;
+  line-height: 1;
+  background: none;
+  border: none;
+  color: var(--ink-dim);
+  cursor: pointer;
+}
+
+.ctl {
+  display: block;
+  margin: 10px 0;
+}
+
+.ctl-label {
+  display: flex;
+  justify-content: space-between;
+  color: var(--ink-dim);
+  margin-bottom: 4px;
+}
+
+.ctl-label output {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.ctl input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.ctl-check {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  color: var(--ink-dim);
+}
+
+.seg {
+  display: flex;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.seg button {
+  flex: 1;
+  font: inherit;
+  font-size: 12px;
+  padding: 5px 4px;
+  background: transparent;
+  color: var(--ink-dim);
+  border: none;
+  border-left: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.seg button:first-child {
+  border-left: none;
+}
+
+.seg button.on {
+  background: rgba(214, 155, 82, 0.22);
+  color: var(--ink);
+}
+
+.panel-keys {
+  margin: 10px 0 2px;
+  color: var(--ink-dim);
+  font-size: 11px;
+}
+
+kbd {
+  font-family: inherit;
+  font-size: 10px;
+  padding: 1px 5px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+/* ----------------------------------------------------------------- status */
+
+.status {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 7;
+  max-width: calc(100vw - 32px);
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .hud {
+    bottom: 10px;
+    font-size: 11px;
+  }
+  .hud-stats {
+    gap: 4px 10px;
+  }
+  .panel {
+    left: 16px;
+    width: auto;
+  }
+}
