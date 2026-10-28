@@ -1,0 +1,5 @@
+# scripts/capture_results.py and scripts/make_figures.py
+playwright>=1.40
+pillow>=10.1
+numpy>=1.24
+matplotlib>=3.7
