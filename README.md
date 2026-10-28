@@ -2,6 +2,14 @@
 
 ## A framework for faking lenticular prints in WebXR
 
+<a href="https://veergoggles.github.io/lenticulAR/demos/"><img align="right" width="120" alt="QR code for the live demos" src="docs/live-demos-qr.png"></a>
+
+**▶ Live demo: [pARelax and lenticulAR, side by side](https://veergoggles.github.io/lenticulAR/demos/)**
+— or full screen: [lenticulAR](https://veergoggles.github.io/lenticulAR/) ·
+[pARelax](https://veergoggles.github.io/pARelax/). Runs in the browser: allow
+the camera and move your head, or use a mouse or finger. Scan the code to open
+it on a phone.
+
 lenticulAR turns an ordinary screen into a lenticular print. Three
 depth-mapped scenes — the [pARelax](https://github.com/VeerGoggles/pARelax)
 "window" technique — sit behind the glass, and where you stand picks the one
@@ -203,7 +211,11 @@ and publishes `main` to GitHub Pages — at
 <https://veergoggles.github.io/lenticulAR/> — once Pages is enabled under
 *Settings → Pages → Source: GitHub Actions* (until then the deploy step is
 skipped with a notice). Pages serves over HTTPS, so the camera works there,
-including on phones.
+including on phones. The side-by-side page is a static file,
+[`public/demos/index.html`](public/demos/index.html), published at `/demos/`;
+it embeds this app and the [pARelax](https://github.com/VeerGoggles/pARelax)
+deployment; both share the `veergoggles.github.io` origin, so the camera works
+inside both frames.
 
 ---
 
@@ -221,6 +233,7 @@ src/
     trackers.js           MindAR face, pointer, manual
   demo/demoScenes.js      procedural colour + depth pairs
   App.jsx, Hud.jsx, ControlPanel.jsx
+public/demos/             live-demo page: pARelax and lenticulAR side by side
 scripts/                  results harness and figures
 docs/METHOD.md            the maths
 docs/RESULTS.md           measurements and frames

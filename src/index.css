@@ -35,9 +35,11 @@ body,
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  justify-content: safe center; /* short viewports (e.g. an embedded frame) scroll instead of clipping */
+  overflow-y: auto;
   gap: 14px;
   text-align: center;
-  padding: 0 24px;
+  padding: 24px;
   background: radial-gradient(ellipse at center, rgba(14, 17, 22, 0.55), rgba(14, 17, 22, 0.88));
 }
 
